@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/general.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h2 style="text-align: center;">To do list</h2>
+            <div class="d-flex justify-content-center">
+                <form action="/createForm" method="get">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        Add new Task
+                    </button>
+                </form>
+            </div>
+        </div>
+        <table class="table" style="margin-top: 50px;">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Task's name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Due date</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Completed</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%for(let i=0; i<result.length ; i++) {%>
+                    <tr>
+                        <th scope="row">
+                            <%=result[i].id%>
+                        </th>
+                        <td>
+                            <%=result[i].title%>
+                        </td>
+                        <td>
+                            <%=result[i].description%>
+                        </td>
+                        <td>
+                            <%=result[i].due_date%>
+                        </td>
+                        <td>
+                            <%=result[i].priority%>
+                        </td>
+                        <td>
+                            <%=result[i].completed%>
+                        </td>
+                        <td>
+                            <form action="/edit/<%=result[i].id%>" method="post">
+                                <button>Edit</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/delete/<%=result[i].id%>" method="post">
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
